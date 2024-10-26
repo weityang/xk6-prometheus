@@ -143,8 +143,18 @@ func (a *PrometheusAdapter) handleGauge(sample *metrics.Sample) {
 	}
 }
 
+var syntheticBuckets = []float64{
+	5, 10, 50, 100, 250, 500, 750, 1000, 2000, 5000, 10000, 20000, 30000,
+}
+var defaultBuckets = []float64{0}
+
 func (a *PrometheusAdapter) handleRate(sample *metrics.Sample) {
-	if histogram := a.getHistogram(sample.Metric.Name, "k6 rate", []float64{0}, sample.Tags); histogram != nil {
+	buckets := defaultBuckets
+	if sample.Metric.Name == "coolname" {
+		buckets = syntheticBuckets
+	}
+
+	if histogram := a.getHistogram(sample.Metric.Name, "k6 rate", buckets, sample.Tags); histogram != nil {
 		labelValues := a.tagsToLabelValues(histogram.labelNames, sample.Tags)
 		metric, err := histogram.histogramVec.GetMetricWithLabelValues(labelValues...)
 
