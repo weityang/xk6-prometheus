@@ -150,7 +150,7 @@ var defaultBuckets = []float64{0}
 
 func (a *PrometheusAdapter) handleRate(sample *metrics.Sample) {
 	buckets := defaultBuckets
-	if sample.Metric.Name == "coolname" {
+	if sample.Metric.Name == "custom_req_duration" {
 		buckets = syntheticBuckets
 	}
 
