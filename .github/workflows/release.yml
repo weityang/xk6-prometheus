@@ -29,7 +29,7 @@ jobs:
         id: build
         uses: szkiba/xk6bundler@v0
         with:
-          with: github.com/szkiba/xk6-prometheus=/github/workspace
+          with: github.com/weityang/xk6-prometheus=/github/workspace
 
       - name: Create Release
         uses: softprops/action-gh-release@v1

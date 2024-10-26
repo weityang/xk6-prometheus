@@ -2,13 +2,13 @@
 
 A k6 extension implements Prometheus HTTP exporter as k6 output extension.
 
-Using **xk6-prometheus** output extension you can collect metrics from long running k6 process with Prometheus. All custom k6 metrics ([Counter](https://k6.io/docs/javascript-api/k6-metrics/counter/),[Gauge](https://k6.io/docs/javascript-api/k6-metrics/gauge/),[Rate](https://k6.io/docs/javascript-api/k6-metrics/rate/),[Trend](https://k6.io/docs/javascript-api/k6-metrics/trend/)) and [build-in metrics](https://k6.io/docs/using-k6/metrics/#built-in-metrics) will be accessible as appropiate Prometheus metrics on a given HTTP port in Prometheus importable text format. 
+Using **xk6-prometheus** output extension you can collect metrics from long running k6 process with Prometheus. All custom k6 metrics ([Counter](https://k6.io/docs/javascript-api/k6-metrics/counter/),[Gauge](https://k6.io/docs/javascript-api/k6-metrics/gauge/),[Rate](https://k6.io/docs/javascript-api/k6-metrics/rate/),[Trend](https://k6.io/docs/javascript-api/k6-metrics/trend/)) and [build-in metrics](https://k6.io/docs/using-k6/metrics/#built-in-metrics) will be accessible as appropiate Prometheus metrics on a given HTTP port in Prometheus importable text format.
 
 Built for [k6](https://go.k6.io/k6) using [xk6](https://github.com/grafana/xk6).
 
 ## Download
 
-You can download pre-built k6 binaries from [Releases](https://github.com/szkiba/xk6-prometheus/releases/) page. Check [Packages](https://github.com/szkiba/xk6-prometheus/pkgs/container/xk6-prometheus) page for pre-built k6 Docker images.
+You can download pre-built k6 binaries from [Releases](https://github.com/weityang/xk6-prometheus/releases/) page. Check [Packages](https://github.com/weityang/xk6-prometheus/pkgs/container/xk6-prometheus) page for pre-built k6 Docker images.
 
 ## Build
 
@@ -32,7 +32,7 @@ You must have the latest Go version installed to build the k6 binary. The latest
 2. Build the binary:
 
    ```shell
-   xk6 build --with github.com/szkiba/xk6-prometheus@latest
+   xk6 build --with github.com/weityang/xk6-prometheus@latest
    ```
 
 > **Note**
@@ -44,7 +44,7 @@ If you want to add a feature or make a fix, clone the project and build it using
 
 ```bash
 git clone git@github.com:szkiba/xk6-prometheus.git && cd xk6-prometheus
-xk6 build --with github.com/szkiba/xk6-prometheus@latest=.
+xk6 build --with github.com/weityang/xk6-prometheus@latest=.
 ```
 
 ## Docker
@@ -54,13 +54,13 @@ You can also use pre-built k6 image within a Docker container. In order to do th
 **Linux**
 
 ```plain
-docker run -v $(pwd):/scripts -it --rm ghcr.io/szkiba/xk6-prometheus:latest run -d 1m --out=prometheus /scripts/script.js
+docker run -v $(pwd):/scripts -it --rm ghcr.io/weityang/xk6-prometheus:latest run -d 1m --out=prometheus /scripts/script.js
 ```
 
 **Windows**
 
 ```plain
-docker run -v %cd%:/scripts -it --rm ghcr.io/szkiba/xk6-prometheus:latest run -d 1m --out=prometheus /scripts/script.js
+docker run -v %cd%:/scripts -it --rm ghcr.io/weityang/xk6-prometheus:latest run -d 1m --out=prometheus /scripts/script.js
 ```
 
 ## Usage
@@ -72,10 +72,10 @@ Without parameters the Prometheus HTTP exporter will accessible on port `5656`.
 ```plain
 $ ./k6 run -d 1m --out prometheus script.js
 
-          /\      |‾‾| /‾‾/   /‾‾/   
-     /\  /  \     |  |/  /   /  /    
-    /  \/    \    |     (   /   ‾‾\  
-   /          \   |  |\  \ |  (‾)  | 
+          /\      |‾‾| /‾‾/   /‾‾/
+     /\  /  \     |  |/  /   /  /
+    /  \/    \    |     (   /   ‾‾\
+   /          \   |  |\  \ |  (‾)  |
   / __________ \  |__| \__\ \_____/ .io
 
   execution: local
@@ -91,17 +91,17 @@ default ✓ [======================================] 1 VUs  1m0s
 
      data_received..................: 611 kB 10 kB/s
      data_sent......................: 4.1 kB 67 B/s
-     http_req_blocked...............: avg=3.37ms   min=2.86µs   med=3.82µs   max=181.96ms p(90)=11.15µs  p(95)=13.52µs 
-     http_req_connecting............: avg=2.19ms   min=0s       med=0s       max=118.34ms p(90)=0s       p(95)=0s      
+     http_req_blocked...............: avg=3.37ms   min=2.86µs   med=3.82µs   max=181.96ms p(90)=11.15µs  p(95)=13.52µs
+     http_req_connecting............: avg=2.19ms   min=0s       med=0s       max=118.34ms p(90)=0s       p(95)=0s
      http_req_duration..............: avg=125.14ms min=118.99ms med=120.68ms max=237.66ms p(90)=121.45ms p(95)=124.07ms
        { expected_response:true }...: avg=125.14ms min=118.99ms med=120.68ms max=237.66ms p(90)=121.45ms p(95)=124.07ms
-     http_req_failed................: 0.00%  ✓ 0   ✗ 54 
+     http_req_failed................: 0.00%  ✓ 0   ✗ 54
      http_req_receiving.............: avg=5.1ms    min=85.32µs  med=792.2µs  max=118.29ms p(90)=860.41µs p(95)=903.71µs
-     http_req_sending...............: avg=20.68µs  min=12.53µs  med=16.69µs  max=75.97µs  p(90)=29.39µs  p(95)=37.87µs 
-     http_req_tls_handshaking.......: avg=0s       min=0s       med=0s       max=0s       p(90)=0s       p(95)=0s      
+     http_req_sending...............: avg=20.68µs  min=12.53µs  med=16.69µs  max=75.97µs  p(90)=29.39µs  p(95)=37.87µs
+     http_req_tls_handshaking.......: avg=0s       min=0s       med=0s       max=0s       p(90)=0s       p(95)=0s
      http_req_waiting...............: avg=120.01ms min=118.17ms med=119.78ms max=127.48ms p(90)=120.6ms  p(95)=120.71ms
      http_reqs......................: 54     0.885451/s
-     iteration_duration.............: avg=1.12s    min=1.11s    med=1.12s    max=1.3s     p(90)=1.12s    p(95)=1.16s   
+     iteration_duration.............: avg=1.12s    min=1.11s    med=1.12s    max=1.3s     p(90)=1.12s    p(95)=1.16s
      iterations.....................: 54     0.885451/s
      vus............................: 1      min=1 max=1
      vus_max........................: 1      min=1 max=1
@@ -119,14 +119,14 @@ k6 run --out 'prometheus=param1=value1&param2=value2&param3=value3'
 
 The following paremeters are recognized:
 
-parameter | description
-----------|------------
-namespace | [Prometheus namespace](https://prometheus.io/docs/practices/naming/) for exported metrics (default: "", empty)
-subsystem | [Prometheus subsystem](https://prometheus.io/docs/practices/naming/) for exported metrics (default: "", empty)
-host      | Hostname or IP address for HTTP endpoint (default: "", empty, listen on all interfaces)
-port      | TCP port for HTTP endoint (default: 5656)
+| parameter | description                                                                                                    |
+| --------- | -------------------------------------------------------------------------------------------------------------- |
+| namespace | [Prometheus namespace](https://prometheus.io/docs/practices/naming/) for exported metrics (default: "", empty) |
+| subsystem | [Prometheus subsystem](https://prometheus.io/docs/practices/naming/) for exported metrics (default: "", empty) |
+| host      | Hostname or IP address for HTTP endpoint (default: "", empty, listen on all interfaces)                        |
+| port      | TCP port for HTTP endoint (default: 5656)                                                                      |
 
-*It is recommended to use `k6` as either `namespace` or `subsystem` to prefix exported metrics names with `k6_` string.*
+_It is recommended to use `k6` as either `namespace` or `subsystem` to prefix exported metrics names with `k6_` string._
 
 ## Sample HTTP response
 
