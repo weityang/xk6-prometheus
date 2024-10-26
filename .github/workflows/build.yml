@@ -23,6 +23,6 @@ jobs:
 
       - name: Build
         id: build
-        uses: szkiba/xk6bundler@v0
+        uses: weityang/xk6bundler@v0
         with:
           with: github.com/weityang/xk6-prometheus=/github/workspace
