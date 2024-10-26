@@ -43,7 +43,7 @@ You must have the latest Go version installed to build the k6 binary. The latest
 If you want to add a feature or make a fix, clone the project and build it using the following commands. The xk6 will force the build to use the local clone instead of fetching the latest version from the repository. This process enables you to update the code and test it locally.
 
 ```bash
-git clone git@github.com:szkiba/xk6-prometheus.git && cd xk6-prometheus
+git clone git@github.com:weityang/xk6-prometheus.git && cd xk6-prometheus
 xk6 build --with github.com/weityang/xk6-prometheus@latest=.
 ```
 
@@ -126,7 +126,7 @@ The following paremeters are recognized:
 | host      | Hostname or IP address for HTTP endpoint (default: "", empty, listen on all interfaces)                        |
 | port      | TCP port for HTTP endoint (default: 5656)                                                                      |
 
-_It is recommended to use `k6` as either `namespace` or `subsystem` to prefix exported metrics names with `k6_` string._
+_It is recommended to use `k6` as either `namespace` or `subsystem` to prefix exported metrics names with `k6_` string.\_
 
 ## Sample HTTP response
 
