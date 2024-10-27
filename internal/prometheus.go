@@ -105,6 +105,8 @@ func (a *PrometheusAdapter) tagsToLabelValues(labelNames []string, sampleTags *m
 	tags := sampleTags.Map()
 	labelValues := []string{}
 
+	a.logger.WithField("tags", tags).Info("All tags: ")
+
 	for _, label := range labelNames {
 		labelValues = append(labelValues, tags[label])
 		delete(tags, label)
